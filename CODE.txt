@@ -1,0 +1,45 @@
+ mov 80A0,r0
+out r0,p0
+mov 4041,r1
+out r1,p1
+mov 20A2,r2
+out r2,p2
+mov FF14,r3
+out r3,p3
+mov 2088,r0
+out r0,p4
+mov 4054,r1
+out r1,p5
+mov FFA2,r2
+out r2,p6
+mov 0011,r3
+out r3,p7
+
+m:
+IN P0,R0
+ROR 1,R0
+
+IN P1,R1
+ROR 1,R1
+OUT R1,P0
+IN P2,R1
+ROR 1,R1
+OUT R1,P1
+IN P3,R1
+ROR 1,R1
+OUT R1,P2
+IN P4,R1
+ROR 1,R1
+OUT R1,P3
+IN P5,R1
+ROR 1,R1
+OUT R1,P4
+IN P6,R1
+ROR 1,R1
+OUT R1,P5
+IN P7,R1
+ROR 1,R1
+OUT R1,P6
+OUT R0,P7
+JMP m
+stop
