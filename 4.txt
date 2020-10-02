@@ -1,0 +1,50 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+	srand((unsigned)time(NULL));
+	int const n = 5;
+	int a[n], b[n], c[n];
+	for (int i = 0; i < n - 1; i++)
+	{
+		a[i] = rand() % 15;
+		b[i] = rand() % 15;
+	}
+	for (int i = 0; i < n - 1; i++)cout << a[i] <<";";cout<< endl;
+	for (int i = 0; i < n - 1; i++)cout << b[i] << ";";cout << endl;
+	int* pa = a; cout << "pa=*" << pa << endl;
+	int* pb = b; cout << "pb=*" << pb << endl;
+	cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
+	_asm
+	{
+		xor eax, eax
+		xor ebx, ebx
+		mov eax, dword ptr[a+2*4]
+		mov ebx, dword ptr[b+3*4]
+		XCHG eax, ebx
+		mov dword ptr[a + 2 * 4],eax
+		mov dword ptr[b + 3 * 4], ebx
+	}
+	for (int i = 0; i < n - 1; i++)cout << a[i] << ";"; cout << endl;
+	for (int i = 0; i < n - 1; i++)cout << b[i] << ";"; cout << endl;
+	
+	int x = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		;
+		_asm
+		{
+			xor eax, eax
+			xor ebx, ebx
+			mov eax, dword ptr[i]
+			mov ebx, dword ptr[pa]
+			add eax, ebx
+			mov ebx, dword ptr[eax]
+			mov dword ptr[x],ebx
+		}
+		cout << "x=" << x << endl;
+	}
+	
+}
